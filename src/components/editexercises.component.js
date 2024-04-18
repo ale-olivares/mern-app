@@ -17,8 +17,7 @@ const EditExercise = () => {
     const [duration, setDuration] = useState(0);
     const [date, setDate] = useState(formattedDate);
     const [users, setUsers] = useState([]);
-    const BASE_URL = import.meta.env.URL_BACKEND;
-
+    const BASE_URL = process.env.REACT_APP_URL_BACKEND;
     // Fetch exercise details and users on component mount
     useEffect(() => {
         axios.get(`${BASE_URL}/api/exercises/${id}`)
