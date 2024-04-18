@@ -14,7 +14,14 @@
       },
       {
         "src": "/(.*)",
-        "dest": "/index.html"
+        "dest": "/public/index.html",
+        "continue": true
+      }
+    ],
+    "rewrites": [
+      { 
+        "source": "/(.*)", 
+        "destination": "/public/index.html" 
       }
     ]
   }
