@@ -17,7 +17,7 @@ const EditExercise = () => {
     const [duration, setDuration] = useState(0);
     const [date, setDate] = useState(formattedDate);
     const [users, setUsers] = useState([]);
-    const BASE_URL = process.env.REACT_APP_URL_BACKEND;
+    const BASE_URL = import.meta.env.URL_BACKEND;
 
     // Fetch exercise details and users on component mount
     useEffect(() => {
@@ -63,12 +63,13 @@ const EditExercise = () => {
 
         axios.put(`${BASE_URL}/api/exercises/update/${id}`, exercise)
         // axios.put(`http://localhost:5000/api/exercises/update/${id}`, exercise)
-            .then(res => console.log(res.data))
+            .then(res => {console.log(res.data)
+                navigate('/');})
             .catch(err => console.log(err));
 
         // Instead of using window.location to redirect, consider using useHistory hook from React Router for navigation after submit
         //window.location = '/';
-       navigate('/');
+       
     };
 
     return (

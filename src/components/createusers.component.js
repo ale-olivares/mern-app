@@ -23,10 +23,12 @@ const CreateUser = () => {
         // Send the user object to the backend
         axios.post(`${BASE_URL}/api/users/add`, user)
         // axios.post('http://localhost:5000/api/users/add', user)
-            .then(res => console.log(res.data))
+            .then(res =>{ console.log(res.data)
+                setUsername('');
+            })
             .catch(err => console.log(err));
 
-        setUsername('');
+        
     }
 
 

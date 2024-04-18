@@ -69,10 +69,13 @@ class CreateExercise extends Component {
         // Send the exercise object to the backend
         axios.post(`${BASE_URL}/api/exercises/add`, exercise)
         // axios.post('http://localhost:5000/api/exercises/add', exercise)
-            .then(res => console.log(res.data))
+            .then(res => {
+                console.log(res.data)
+                window.location = '/'; // go back to the home page
+            })
             .catch(err => console.log(err));
 
-        window.location = '/'; // go back to the home page
+       
     }
 
     // 2.4 Create a method to fetch the users
