@@ -7,6 +7,7 @@ import axios from 'axios';
 // 2. Create a component
 const CreateUser = () => {
     const [username, setUsername] = useState('');
+    const BASE_URL = process.env.REACT_APP_URL_BACKEND;
 
     const onChangeUsername = (e) => {
         setUsername(e.target.value);
@@ -20,7 +21,8 @@ const CreateUser = () => {
         console.log(user);
 
         // Send the user object to the backend
-        axios.post('http://localhost:5000/api/users/add', user)
+        axios.post(`${BASE_URL}/api/users/add`, user)
+        // axios.post('http://localhost:5000/api/users/add', user)
             .then(res => console.log(res.data))
             .catch(err => console.log(err));
 

@@ -9,10 +9,13 @@ import Exercise from './exercise.component';
 const ExerciseList = () => {
     // 2.1 Create variables
     const [exercises, setExercises] = useState([]);
+    const BASE_URL = process.env.REACT_APP_URL_BACKEND;
 
     // 2.2 Get Exercises from the database using useEffect (instead of componentDidMount)
     useEffect(() => {
-        axios.get('http://localhost:5000/api/exercises/')
+        console.log(BASE_URL, "ALE")
+        axios.get(`${BASE_URL}/api/exercises`)
+        //axios.get('http://localhost:5000/api/exercises/')
             .then(response => {
                 setExercises(response.data);
             })
@@ -37,7 +40,8 @@ const ExerciseList = () => {
 
     // 2.3 Delete Exercise
     const deleteExercise = (id) => {
-        axios.delete('http://localhost:5000/api/exercises/' + id)
+        axios.delete(`${BASE_URL}/api/exercises/${id}`)
+        // axios.delete('http://localhost:5000/api/exercises/' + id)
             .then(response => { console.log(response.data)})
 
         setExercises(exercises.filter(ex => ex._id !== id))
@@ -49,7 +53,8 @@ const ExerciseList = () => {
 
     //2.4 Update Exercise
     const updateExercise = (id) => {
-        axios.put('http://localhost:5000/api/exercises/' + id)
+        axios.put(`${BASE_URL}/api/exercises/${id}`)
+        // axios.put('http://localhost:5000/api/exercises/' + id)
             .then(response => { console.log(response.data)});
         
        setExercises(exercises.filter(ex => ex._id !== id))

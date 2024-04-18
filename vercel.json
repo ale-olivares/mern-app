@@ -1,21 +1,9 @@
 {
-    "version": 2,
-    "builds": [
+    "rewrites": [
       {
-        "src": "backend/server.js",
-        "use": "@vercel/node"
+        "source": "/(.*)",
+        "destination": "/index.html"
       }
     ],
-    "routes": [
-      {
-        "src": "/api/(.*)",
-        "dest": "backend/server.js",
-        "methods": ["GET", "POST", "PUT", "DELETE", "OPTIONS"]
-      },
-      {
-        "src": "/(.*)",
-        "dest": "/public/index.html"
-      }
-    ]
+    "regions": ["sfo1"]
   }
-  

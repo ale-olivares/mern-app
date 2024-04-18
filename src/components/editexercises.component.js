@@ -17,10 +17,12 @@ const EditExercise = () => {
     const [duration, setDuration] = useState(0);
     const [date, setDate] = useState(formattedDate);
     const [users, setUsers] = useState([]);
+    const BASE_URL = process.env.REACT_APP_URL_BACKEND;
 
     // Fetch exercise details and users on component mount
     useEffect(() => {
-        axios.get(`http://localhost:5000/api/exercises/${id}`)
+        axios.get(`${BASE_URL}/api/exercises/${id}`)
+        // axios.get(`http://localhost:5000/api/exercises/${id}`)
             .then(response => {
                 const exercise = response.data;
                 setUsername(exercise.username);
@@ -30,7 +32,8 @@ const EditExercise = () => {
             })
             .catch(err => console.log(err));
 
-        axios.get('http://localhost:5000/api/users')
+        axios.get(`${BASE_URL}/api/users`)
+        // axios.get('http://localhost:5000/api/users')
             .then(response => {
                 if (response.data.length > 0) {
                     setUsers(response.data.map(user => user.username));
@@ -58,7 +61,8 @@ const EditExercise = () => {
 
         console.log(exercise);
 
-        axios.put(`http://localhost:5000/api/exercises/update/${id}`, exercise)
+        axios.put(`${BASE_URL}/api/exercises/update/${id}`, exercise)
+        // axios.put(`http://localhost:5000/api/exercises/update/${id}`, exercise)
             .then(res => console.log(res.data))
             .catch(err => console.log(err));
 

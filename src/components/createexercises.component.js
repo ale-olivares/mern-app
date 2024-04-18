@@ -4,6 +4,8 @@ import {Link, NavLink} from 'react-router-dom';
 import axios from 'axios';
 
 // 2. Create a class component
+const BASE_URL = process.env.REACT_APP_URL_BACKEND;
+
 class CreateExercise extends Component {   
     // 2.1 Create a constructor
     constructor(props) {
@@ -13,6 +15,8 @@ class CreateExercise extends Component {
         const today = new Date();
         const formattedDate = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, '0')}-${String(today.getDate()).padStart(2, '0')}`;
 
+
+       
     // Initialize the state with today's date
 
         this.state = { // this is how you create a variable in react
@@ -63,7 +67,8 @@ class CreateExercise extends Component {
         console.log(exercise);
 
         // Send the exercise object to the backend
-        axios.post('http://localhost:5000/api/exercises/add', exercise)
+        axios.post(`${BASE_URL}/api/exercises/add`, exercise)
+        // axios.post('http://localhost:5000/api/exercises/add', exercise)
             .then(res => console.log(res.data))
             .catch(err => console.log(err));
 
@@ -73,7 +78,8 @@ class CreateExercise extends Component {
     // 2.4 Create a method to fetch the users
     componentDidMount() { // this method is called before anything is rendered on the page
 
-        axios.get('http://localhost:5000/api/users') // fetch the users from the backend
+        axios.get(`${BASE_URL}/api/users`) // fetch the users from the backend
+        // axios.get('http://localhost:5000/api/users') // fetch the users from the backend
             .then(response => {
                 if (response.data.length > 0){ // if there are users
                     this.setState({
